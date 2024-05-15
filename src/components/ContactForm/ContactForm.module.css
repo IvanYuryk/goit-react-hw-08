@@ -1,0 +1,22 @@
+.error {
+  color: red;
+}
+
+.addCont {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  border: solid 2px black;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+
+.myForm {
+ display: flex;
+ flex-direction: column;
+}
+
+.addBtn {
+  width: 120px;
+}
