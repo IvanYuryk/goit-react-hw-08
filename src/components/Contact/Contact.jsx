@@ -1,31 +1,78 @@
+import clsx from "clsx";
+
+import { RiContactsLine } from "react-icons/ri";
+import { FiPhone } from "react-icons/fi";
+import { GoTrash } from "react-icons/go";
+import { GoPencil } from "react-icons/go";
+import { CiMenuKebab } from "react-icons/ci";
+
 import css from "./Contact.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faPhone, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-import { deleteContact } from "../../redux/contactsOps";
-import { useDispatch } from "react-redux";
-
-const Contact = ({ id, name, number }) => {
-  const dispatch = useDispatch();
-
-  const onDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
-  };
-
+const Contact = ({
+  id,
+  name,
+  number,
+  menuContact,
+  setMenuContact,
+  setRedactModal,
+  setDeleteModal,
+}) => {
   return (
-    <li className={css.person}>
-      <div>
-        <h3>
-          <FontAwesomeIcon icon={faUser} /> {name}
-        </h3>
-        <p>
-          <FontAwesomeIcon icon={faPhone} /> {number}
+    <>
+      <div className={css.leftBox}>
+        <p className={css.text}>
+          <RiContactsLine className={css.icon} />
+          {name}
+        </p>
+        <p className={css.text}>
+          <FiPhone className={css.icon} />
+          {number}
         </p>
       </div>
-      <button onClick={() => onDeleteContact(id)}>
-         <FontAwesomeIcon icon={faTrash} />
-      </button>
-    </li>
+      <div className={css.menuBox}>
+        <button
+          className={css.menuContactBtn}
+          onClick={() => {
+            if (!menuContact || menuContact !== id) setMenuContact(() => id);
+            if (menuContact === id) setMenuContact(() => null);
+          }}
+        >
+          <CiMenuKebab className={css.menuContactIcon} />
+        </button>
+        <div
+          className={clsx(css.menu, {
+            [css.active]: menuContact === id,
+          })}
+        >
+          <ul>
+            <li className={css.listBtn}>
+              <button
+                className={css.menuBtn}
+                onClick={() => {
+                  setMenuContact(() => null);
+                  setRedactModal({ id, name, number });
+                }}
+              >
+                <GoPencil className={css.menuIcon} />
+                Edit
+              </button>
+            </li>
+            <li className={css.listBtn}>
+              <button
+                className={css.menuBtn}
+                onClick={() => {
+                  setMenuContact(() => null);
+                  setDeleteModal(() => id);
+                }}
+              >
+                <GoTrash className={css.menuIcon} />
+                Delete
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </>
   );
 };
 

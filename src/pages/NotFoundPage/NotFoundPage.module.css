@@ -1,0 +1,20 @@
+.position {
+  /* 100px це сума падінгів контейнера. Верх 80px і низ 20px */
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: inherit;
+  font-weight: 500;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link:hover {
+  font-weight: 600;
+  color: #6c8cff;
+}

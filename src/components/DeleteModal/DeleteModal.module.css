@@ -1,0 +1,27 @@
+.question {
+  text-align: center;
+}
+
+.boxBtn {
+  display: flex;
+  justify-content: space-around;
+}
+
+.modalBtn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: inherit;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modalBtn:hover {
+  color: white;
+  background-color: #6c8cff;
+  border: 1px solid #6c8cff;
+}

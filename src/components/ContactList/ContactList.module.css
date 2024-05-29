@@ -1,7 +1,32 @@
 .contactList {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  max-width: 100%;
-  overflow: hidden;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contactCard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 15px 10px 15px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .contactList {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .contactCard {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .contactCard {
+    width: calc((100% - 30px) / 3);
+  }
 }

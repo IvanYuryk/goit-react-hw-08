@@ -1,0 +1,85 @@
+.box {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  width: 345px;
+  padding: 15px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fieldBox {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.icon {
+  color: #2b900c;
+}
+
+.field {
+  height: 40px;
+  border-radius: 4px;
+  background: transparent;
+  padding: 8px 16px 8px 16px;
+  outline: none;
+  border: 1px solid gray;
+  color: gray;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+.field:hover {
+  border: 1px solid  rgb(6, 6, 109);
+}
+
+.field::placeholder {
+  color: rgba(128, 128, 128, 0.438);
+}
+
+.btn {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: inherit;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin: 15px auto 0 auto;
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn:hover {
+  color: white;
+  background-color: #6c8cff;
+  border: 1px solid #6c8cff;
+}
+
+.addIcon {
+  width: 20px;
+  height: 20px;
+  color:  #2b900c;
+  transition: 250ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.btn:hover .addIcon {
+  color: white;
+  scale: 1.1;
+}
+
+.error {
+  font-size: 12px;
+  color: red;
+}

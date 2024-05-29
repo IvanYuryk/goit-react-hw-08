@@ -1,42 +1,64 @@
-import ContactForm from "./components/ContactForm/ContactForm.jsx";
-import SearchBox from "./components/SearchBox/SearchBox.jsx";
-import ContactList from "./components/ContactList/ContactList.jsx";
+import { useEffect, Suspense, lazy } from "react";
+import { useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import { refreshUser } from "./redux/auth/operations.js";
+
+import Layout from "./components/Layout/Layout.jsx";
 import Loader from "./components/Loader/Loader.jsx";
-
-import { fetchContacts } from "./redux/contactsOps";
-import {
-  selectError,
-  selectLoading,
-  selectContacts,
-} from "./redux/contactsSlice.js";
-
-import css from "./App.module.css";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute.jsx";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute.jsx";
+const HomePage = lazy(() => import("./pages/HomePage/HomePage.jsx"));
+const RegistrationPage = lazy(() =>
+  import("./pages/RegistrationPage/RegistrationPage.jsx")
+);
+const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage.jsx"));
+const ContactsPage = lazy(() =>
+  import("./pages/ContactsPage/ContactsPage.jsx")
+);
+const NotFoundPage = lazy(() =>
+  import("./pages/NotFoundPage/NotFoundPage.jsx")
+);
 
 const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
-  
+
   return (
-    <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <Loader loading={loading} />
-      {contacts.length !== 0 ? (
-        <ContactList />
-      ) : (
-        <b>You have not added any contact yet</b>
-      )}
-      {error && <b>Oops something went wrong. Try reloading the page</b>}
-    </div>
+    <Layout>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route
+            path="/register"
+            element={
+              <RestrictedRoute>
+                <RegistrationPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute>
+                <LoginPage />
+              </RestrictedRoute>
+            }
+          />
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
+    </Layout>
   );
 };
 

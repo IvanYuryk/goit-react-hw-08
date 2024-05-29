@@ -1,0 +1,39 @@
+.box {
+  max-width: 728px;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  color: #2b900c;
+}
+
+.list {
+  margin-left: 20px;
+  padding: 20px;
+}
+
+.li {
+  list-style-type: none;
+}
+
+.li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.span {
+  color: #2b900c;
+  font-weight: 700;
+}
+
+.dynamicText {
+  font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #0c3773, #c62911);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
