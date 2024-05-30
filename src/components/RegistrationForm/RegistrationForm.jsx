@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -8,11 +9,13 @@ import { LuUserPlus2 } from "react-icons/lu";
 import { RiContactsLine } from "react-icons/ri";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { TbPasswordFingerprint } from "react-icons/tb";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import css from "./RegistrationForm.module.css";
 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (valuesFields, actions) => {
     dispatch(register(valuesFields));
@@ -81,18 +84,23 @@ const RegistrationForm = () => {
             <TbPasswordFingerprint className={css.icon} />
             Password
           </label>
-          <Field
-            className={css.field}
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            id={passwordFieldId}
-          />
-          <ErrorMessage
-            className={css.error}
-            name="password"
-            component="span"
-          />
+          <div className={css.passwordWrapper}>
+            <Field
+              className={css.field}
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              id={passwordFieldId}
+            />
+            <button
+              type="button"
+              className={css.eyeIcon}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+          <ErrorMessage className={css.error} name="password" component="span" />
         </div>
 
         <button className={css.btn} type="submit">

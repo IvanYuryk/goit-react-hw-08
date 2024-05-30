@@ -13,8 +13,8 @@ import css from "./ContactForm.module.css";
 const ContactForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (valuesFilds, actions) => {
-    dispatch(addContact(valuesFilds));
+  const handleSubmit = (valuesFields, actions) => {
+    dispatch(addContact(valuesFields));
     actions.resetForm();
   };
 

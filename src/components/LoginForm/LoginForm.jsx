@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useId } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -7,11 +8,13 @@ import { login } from "../../redux/auth/operations.js";
 import { IoLogInOutline } from "react-icons/io5";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import { TbPasswordFingerprint } from "react-icons/tb";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 import css from "./LoginForm.module.css";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (valuesFields, actions) => {
     dispatch(login(valuesFields));
@@ -60,18 +63,23 @@ const LoginForm = () => {
             <TbPasswordFingerprint className={css.icon} />
             Password
           </label>
-          <Field
-            className={css.field}
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            id={passwordFieldId}
-          />
-          <ErrorMessage
-            className={css.error}
-            name="password"
-            component="span"
-          />
+          <div className={css.passwordWrapper}>
+            <Field
+              className={css.field}
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              id={passwordFieldId}
+            />
+            <button
+              type="button"
+              className={css.eyeIcon}
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+          <ErrorMessage className={css.error} name="password" component="span" />
         </div>
 
         <button className={css.btn} type="submit">
