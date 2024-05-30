@@ -30,7 +30,6 @@
   padding: 8px 16px 8px 16px;
   outline: none;
   border: 1px solid gray;
-  color: gray;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -81,4 +80,36 @@
 .error {
   font-size: 12px;
   color: red;
+}
+
+.box .phoneInputContainer .phoneInput {
+  position: relative;
+  height: 40px;
+  width: 100%;
+  border-radius: 4px;
+  background: transparent;
+  padding-left: 48px;
+  outline: none;
+  border: 1px solid gray;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+.box .phoneInputContainer .phoneInput:hover {
+  border: 1px solid  rgb(6, 6, 109);
+}
+.box .phoneInputContainer {
+  width: 100%;
+}
+
+.box .phoneInputContainer .phoneInputButton {
+  background: transparent;
+}
+
+.box .phoneInputContainer .phoneInputDropdown {
+  background: linear-gradient(90deg, #7c9cc9, #fee502);
+  width: auto;
+  border-radius: 4px;
 }
